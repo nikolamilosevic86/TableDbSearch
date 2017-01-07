@@ -118,7 +118,7 @@ public class Searcher {
 				Document doc = searcher.doc(hits[i].doc);
 				String pmc_id = doc.get("pmc_id");
 				if (pmc_id != null) {
-					System.out.println((i + 1) + ". " + pmc_id);
+					System.out.println((i + 1) + ". PMC:" + pmc_id);
 					String tableNo = doc.get("table_order");
 					if(tableNo!=null)
 					{
