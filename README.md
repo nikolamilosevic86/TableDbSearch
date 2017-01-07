@@ -1,5 +1,5 @@
 # TableDbSearch
-Search for Tables in PMC. This project is dependent on database that is produced by (TableAnnotator)[https://github.com/nikolamilosevic86/TableAnnotator] project. It provides functionality for indexing and searching both tables as a whole and individual cells. 
+Search for Tables in PMC. This project is dependent on database that is produced by [TableAnnotator](https://github.com/nikolamilosevic86/TableAnnotator) project. It provides functionality for indexing and searching both tables as a whole and individual cells. 
 
 
 ## Running instructions
