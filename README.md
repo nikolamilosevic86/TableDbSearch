@@ -11,6 +11,7 @@ Once database is indexed, tables can be searched in the following manner for tab
 ```java -jar TableDbSearch.java -s -query "baseline characteristic"```
 
 Output will look like:
+```
 Searching for: (pmc_id:baseline pmc_id:characteristics) (pm_id:baseline pm_id:characteristics) (table_order:baseline table_order:characteristics) (table_caption:baseline table_caption:characteristics) (table_footer:baseline table_footer:characteristics) (table_footer:baseline table_footer:characteristics) (article_title:baseline article_title:characteristics) (spec_pragmatic:baseline spec_pragmatic:characteristics) (table_header:baseline table_header:characteristics) (table_stub:baseline table_stub:characteristics) (table_superRow:baseline table_superRow:characteristics) (table_data:baseline table_data:characteristics)
 Time: 41ms
 4408 total matching documents
@@ -45,6 +46,7 @@ Time: 41ms
 	Table:Table 2
    table_caption: Baseline characteristics of the cohort
 Press (n)ext page, (q)uit or enter number to jump to a page.
+```
 
 First number is order of the result, the second is PMC id. 
 
