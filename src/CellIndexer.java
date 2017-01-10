@@ -143,7 +143,7 @@ public class CellIndexer {
 					conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);	
 					
 					Statement stmt = conn.createStatement();
-			  		String selectTables = "SELECT idTable,idArticle,PMCID,PMID,pissn,eissn,Title,Abstract,JournalName,Source,SpecID,TableOrder,TableCaption,TableFooter,StructureType,PragmaticType,SpecPragmatic FROM table_db.arttable inner join article on article.idArticle=arttable.Article_idArticle where PMCID=3082157;";
+			  		String selectTables = "SELECT idTable,idArticle,PMCID,PMID,pissn,eissn,Title,Abstract,JournalName,Source,SpecID,TableOrder,TableCaption,TableFooter,StructureType,PragmaticType,SpecPragmatic FROM table_db.arttable inner join article on article.idArticle=arttable.Article_idArticle;";
 			  		// execute insert SQL stetement
 			  		ResultSet rs = stmt.executeQuery(selectTables);
 	                while(rs.next())
