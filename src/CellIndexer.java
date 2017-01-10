@@ -143,7 +143,7 @@ public class CellIndexer {
 					conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);	
 					
 					Statement stmt = conn.createStatement();
-			  		String selectTables = "SELECT idTable,idArticle,PMCID,PMID,pissn,eissn,Title,Abstract,JournalName,Source,SpecID,TableOrder,TableCaption,TableFooter,StructureType,PragmaticType,SpecPragmatic FROM table_db.arttable inner join article on article.idArticle=arttable.Article_idArticle;";
+			  		String selectTables = "SELECT idTable,idArticle,PMCID,PMID,pissn,eissn,Title,Abstract,JournalName,Source,SpecID,TableOrder,TableCaption,TableFooter,StructureType,PragmaticType,SpecPragmatic FROM table_db.arttable inner join article on article.idArticle=arttable.Article_idArticle where PMCID=3082157;";
 			  		// execute insert SQL stetement
 			  		ResultSet rs = stmt.executeQuery(selectTables);
 	                while(rs.next())
@@ -214,14 +214,15 @@ public class CellIndexer {
 						for(int i=0;i<newDoc.cells.size();i++)
 						{
 							Document doc = new Document();
+							CellData cell = newDoc.cells.get(i);
 							//Add document meta data
-							Field doc_id = new StringField("doc_id", newDoc.ArticleID,
+							Field doc_id = new StringField("doc_id", newDoc.ArticleID+cell.idTable+cell.CellID,
 									Field.Store.YES);
 							doc.add(doc_id);
-							Field pmc_id = new StringField("pmc_id", newDoc.PMCID,
+							TextField pmc_id = new TextField("pmc_id", newDoc.PMCID,
 									Field.Store.YES);
 							doc.add(pmc_id);
-							Field pm_id = new StringField("pm_id", newDoc.PMID,
+							TextField pm_id = new TextField("pm_id", newDoc.PMID,
 									Field.Store.YES);
 							doc.add(pm_id);
 							TextField table_order = new TextField("table_order", newDoc.TableOrder,
@@ -229,53 +230,58 @@ public class CellIndexer {
 							doc.add(table_order);
 							TextField table_caption = new TextField("table_caption", newDoc.TableCaption,
 									Field.Store.YES);
-							table_caption.setBoost(1.0f);
+							table_caption.setBoost(3.0f);
 							doc.add(table_caption);
 							TextField table_footer = new TextField("table_footer", newDoc.TableFooter,
 									Field.Store.YES);
-							table_footer.setBoost(1.0f);
+							table_footer.setBoost(3.0f);
 							doc.add(table_footer);
 							TextField article_title = new TextField("article_title", newDoc.ArticleTitle,
 									Field.Store.YES);
-							article_title.setBoost(0.5f);
+							article_title.setBoost(3.0f);
 							doc.add(article_title);
 							TextField spec_pragmatic = new TextField("spec_pragmatic", newDoc.SpecPragmaticType,
 									Field.Store.YES);
-							spec_pragmatic.setBoost(1.0f);
+							spec_pragmatic.setBoost(3.0f);
 							doc.add(spec_pragmatic);
 							
-							CellData cell = newDoc.cells.get(i);
+							
 							//Add cell data
 							if(cell.WholeHeader==null){
 								cell.WholeHeader = "";
 							}
 							TextField table_header = new TextField("cell_header", cell.WholeHeader,
 									Field.Store.YES);	
-							table_header.setBoost(4.0f);
+							table_header.setBoost(5.0f);
 							doc.add(table_header);
 							if(cell.WholeStub==null){
 								cell.WholeStub = "";
 							}
 							TextField table_stub = new TextField("cell_stub", cell.WholeStub,
 									Field.Store.YES);	
-							table_stub.setBoost(4.0f);
+							table_stub.setBoost(5.0f);
 							doc.add(table_stub);
 							if(cell.WholeSuperrow==null){
 								cell.WholeSuperrow = "";
 							}
 							TextField table_superRow = new TextField("cell_superRow", cell.WholeSuperrow,
 									Field.Store.YES);	
-							table_superRow.setBoost(4.0f);
+							table_superRow.setBoost(5.0f);
 							doc.add(table_superRow);
 							TextField table_data = new TextField("cell_data", cell.Content,
 									Field.Store.YES);	
-							table_data.setBoost(2.0f);
+							table_data.setBoost(0.1f);
 							doc.add(table_data);
+							
+							TextField table_location = new TextField("cell_location", cell.CellID,
+									Field.Store.YES);	
+							table_location.setBoost(1.0f);
+							doc.add(table_location);
 							
 							if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
 								// New index, so we just add the document (no old
 								// document can be there):
-								System.out.println("adding " + newDoc.PMCID +" "+newDoc.TableOrder+" "+cell.CellID);
+								System.out.println("adding " + newDoc.PMCID +" "+newDoc.TableOrder+" "+cell.CellID+" " +cell.Content+" "+cell.WholeStub);
 								writer.addDocument(doc);
 							} else {
 								// Existing index (an old copy of this document may have
@@ -284,7 +290,7 @@ public class CellIndexer {
 								// matching the exact
 								// path, if present:
 								System.out.println("updating " +newDoc.PMCID);
-								writer.updateDocument(new Term("doc_id", newDoc.ArticleID),
+								writer.updateDocument(new Term("doc_id", newDoc.ArticleID+newDoc.cells.get(i).idTable+newDoc.cells.get(i).CellID),
 										doc);
 							}
 							

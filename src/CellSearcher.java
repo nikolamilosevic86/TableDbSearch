@@ -70,15 +70,16 @@ public class CellSearcher {
 				Document doc = searcher.doc(hit.doc);
 				String pmc = doc.get("pmc_id");
 				String tableOrder = doc.get("table_order");
+				String location = doc.get("cell_location");
 				
-				if(res.get(pmc+tableOrder)==null)
+				if(res.get(pmc+tableOrder+location)==null)
 				{
-					res.put(pmc+tableOrder, doc);
-					scoreres.put(pmc+tableOrder, new ScoreDoc2(hit));
+					res.put(pmc+tableOrder+location, doc);
+					scoreres.put(pmc+tableOrder+location, new ScoreDoc2(hit));
 				}
 				else
 				{
-					ScoreDoc2 score = (ScoreDoc2) scoreres.get(pmc+tableOrder);
+					ScoreDoc2 score = (ScoreDoc2) scoreres.get(pmc+tableOrder+location);
 					score.score+=hit.score;
 					score.numOfDocs++;
 				}
@@ -143,6 +144,10 @@ public class CellSearcher {
 					String cell_superRow = doc.get("cell_superRow");
 					if (cell_superRow != null) {
 						System.out.println("   cell_superRow: " + doc.get("cell_superRow"));
+					}
+					String cell_location = doc.get("cell_superRow");
+					if (cell_location != null) {
+						System.out.println("   cell_location: " + doc.get("cell_location"));
 					}
 				} else {
 					System.out.println((i + 1) + ". "
@@ -236,6 +241,7 @@ public class CellSearcher {
 				break;
 			}
 			Query query = parser.parse(line);
+			
 			System.out.println("Searching for: " + query.toString(field));
 
 			if (repeat > 0) { // repeat & time as benchmark
