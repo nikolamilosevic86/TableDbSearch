@@ -1,31 +1,39 @@
 ---
-title:
-call_to_action: Contact
-background_image_path:
-large_header: true
-testimonials:
-  - message: We use Justice Law in all our endeavours. They offer an unparalleled service when it comes to running a business.
-    image: "//placekitten.com/60/60?a=.png"
-    name: Joice Carmold
-  - message: Justice Law are the best of the best. Being local, they care about people and have strong ties to the community.
-    image: "//fillmurray.com/60/60?a=.png"
-    name: Peter Rottenburg
-  - message: Justice Law were everything we could have hoped for when buying our first home. Highly recommended to all.
-    image: "//placebear.com/60/60?a=.png"
-    name: D. and G. Gibbleston
+layout: default
+title: Home
 ---
 
-<div class="editable">
-	<p>This is the <strong>Justice</strong> template from <a href="http://cloudcannon.com/">CloudCannon</a>. Justice is strong foundation for the web presence of a law firm or business. It's filled with fictitious example content to get you started.</p>
+<div class="home">
 
-	<p>Justice Law is professional representation. Practicing for over 50 years, our team have the knowledge and skills to get you results.</p>
-</div>
+  <ul class="posts">
+    {% for post in paginator.posts %}
+    <li>
+      <h1 >{{ post.title }}</h1>
+      <span>{{ post.date | date: "%b %-d, %Y" }}</span>
+      {{ post.excerpt }}
+      <div class="continue">
+        <a href="{{ post.url | prepend: site.baseurl }}">&bull;&bull;&bull;</a>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
 
-<div class="testimonials">
-	{% for testimonial in page.testimonials %}
-		<blockquote class="testimonial">
-			<p class="testimonial-message">{{ testimonial.message }}</p>
-			<p class="testimonial-author"><img src="{% include relative-src.html src=testimonial.image %}" alt="Photo of {{ testimonial.name }}"> {{ testimonial.name }}</p>
-		</blockquote>
-	{% endfor %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      {% if page == 2 %}
+        <a class="page-link" href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">prv</a>
+      {% else %}
+        <a class="page-link" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">prv</a>
+      {% endif %}
+    {% else %}
+      <span class="page-link">prv</span>
+    {% endif %}
+
+    {% if paginator.next_page %}
+      <a class="page-link" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">nxt</a>
+    {% else %}
+      <span class="page-link">nxt</span>
+    {% endif %}
+  </div>
+
 </div>
