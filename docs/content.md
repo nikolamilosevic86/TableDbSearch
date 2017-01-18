@@ -35,9 +35,9 @@ Time: 41ms
    table_caption: Demographic and baseline characteristics, indications for multidetector computer tomography (MDCT) and patient condition. BMI Body mass index
 5. 3551874
 	Table:Table without label
-   table_caption: Table 1. Baseline characteristics and antibody response
+   table_caption: TableÂ 1. Baseline characteristics and antibody response
 6. 3277821
-	Table:Table 1
+	Table:TableÂ 1
    table_caption: Baseline demographics and clinical characteristics of study patients
 7. 3162912
 	Table:Table 4
