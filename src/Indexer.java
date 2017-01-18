@@ -155,7 +155,7 @@ public class Indexer {
 					conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);	
 					
 					Statement stmt = conn.createStatement();
-			  		String selectTables = "SELECT idTable,idArticle,PMCID,PMID,pissn,eissn,Title,Abstract,JournalName,Source,SpecID,TableOrder,TableCaption,TableFooter,StructureType,PragmaticType,SpecPragmatic FROM table_db.arttable inner join article on article.idArticle=arttable.Article_idArticle;";
+			  		String selectTables = "SELECT idTable,idArticle,PMCID,PMID,pissn,eissn,Title,Abstract,JournalName,Source,SpecID,TableOrder,TableCaption,TableFooter,StructureType,PragmaticType,SpecPragmatic FROM table_db.arttable inner join article on article.idArticle=arttable.Article_idArticle where PMCID in ('2363684','2074787','3169584','2033957','3573028','2150089','3514388','2394291','3608638','113771','2361804','2858164','2394385','3054451','3221971','2409633','3369918','2669050','2193752','3516691','3274051','3444943','3473261','2988208','2063152','3304416','3495759','2362682','3404084','2846886','2572837','2408939','1977784','3575316','3407050','3348129','3040719','2816645','2788261','2423908','2376342','2011033','2375380','2672178','3546947','3219023','29050','2362742','2247100','2732148');";
 			  		// execute insert SQL stetement
 			  		ResultSet rs = stmt.executeQuery(selectTables);
 	                while(rs.next())

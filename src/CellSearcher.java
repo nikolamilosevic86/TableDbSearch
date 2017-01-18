@@ -71,6 +71,17 @@ public class CellSearcher {
 				String pmc = doc.get("pmc_id");
 				String tableOrder = doc.get("table_order");
 				String location = doc.get("cell_location");
+				String header = doc.get("cell_header");
+				String stub = doc.get("cell_stub");
+				String data = doc.get("cell_data");
+				if(data.equals(""))
+				{
+					hit.score=hit.score -5;
+				}
+				if(header.equals(data)||stub.equals(data))
+				{
+					hit.score = hit.score - 1;
+				}
 				
 				if(res.get(pmc+tableOrder+location)==null)
 				{

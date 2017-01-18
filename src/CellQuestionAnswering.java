@@ -27,6 +27,7 @@ public class CellQuestionAnswering {
 		topic = in.readLine();
 		System.out.println("What is the information you are looking (table caption, stub, header, super-row or data):");
 		information = in.readLine();
+		String[] info = information.split(" ");
 		queryString = "(pmc_id:"+"\""+topic+"\" OR "+"article_title:"+"\""+topic+"\" OR "+"table_caption:"+"\""+topic+"\") AND "+
 				"(cell_header:"+"\""+information+"\" OR "+"cell_stub:"+"\""+information+"\" OR "+"cell_superRow:"+"\""+information+"\" OR "
 				+"cell_data:"+"\""+information+"\") ";
