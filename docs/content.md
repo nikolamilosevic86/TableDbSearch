@@ -67,14 +67,14 @@ Output will look like this:
 Searching for: pmc_id:age pm_id:age table_order:age table_caption:age table_footer:age article_title:age spec_pragmatic:age cell_header:age cell_stub:age cell_superRow:age cell_data:age
 3420 total matching documents
 1. PMC:2686318
-	Table:Table 1
+	Table:Table 1
    table_caption: Baseline demographics and patient history of SERF study participants
    cell_data: ?Age < 65
    cell_header: Baseline demographics/history ; Risk factor ;  ; 
    cell_stub: ?Age < 65
    cell_superRow:  Age
 2. PMC:2686318
-	Table:Table 3
+	Table:Table 3
    table_caption: Univariate and multivariate predictors of death in the SERF study
    cell_data: ?80 ? age vs. age < 65
    cell_header: Risk factor ;  ; 
@@ -95,7 +95,7 @@ Searching for: pmc_id:age pm_id:age table_order:age table_caption:age table_foot
    cell_stub: ?Median age (range), years
    cell_superRow:  Age
 5. PMC:3164103
-	Table:Table 5
+	Table:Table 5
    table_caption: Sociodemographic and clinical characteristics associated with control of treated hypertension, dyslipidaemia, type 2 diabetes, and obesity
    cell_data: Age
    cell_header: Control of hypertension (BP <140/90 mmHg)a odds ratio (95% CI) ; 
