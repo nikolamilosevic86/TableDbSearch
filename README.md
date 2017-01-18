@@ -5,15 +5,16 @@ Search for Tables in PMC. This project is dependent on database that is produced
 ## Running instructions
 ###Indexing
 You need to set up database connection information in settings.cfg file. Then for indexing tables run:
-```java -cp TableDbSearch.java TableDbSearchMain -index indexPath```
+```java -cp TableDbSearch.jar TableDbSearchMain -index indexPath```
 indexPath - path where index file is saved
 
 For indexing cells run:
-```java -cp TableDbSearch.java CellDbSearch -index indexPath```
+```java -cp TableDbSearch.jar CellDbSearch -index indexPath```
+
 
 ###Searching
 Once database is indexed, tables can be searched in the following manner for tables containing "baseline characteristics"
-```java -cp TableDbSearch.java TableDbsearchMain -s -query "baseline characteristic"```
+```java -cp TableDbSearch.jar TableDbsearchMain -s -query "baseline characteristic"```
 
 Output will look like:
 ```
@@ -56,7 +57,10 @@ Press (n)ext page, (q)uit or enter number to jump to a page.
 First number is order of the result, the second is PMC id. 
 
 Cells can be search with the following command:
-```java -cp TableDbSearch.java CellDbSearch -s -query "Age"```
+```java -cp TableDbSearch.jar CellDbSearch -s -query "Age"```
+or with query generation:
+
+```java -cp TableDbSearch.jar CellQuestionAnswering```
 
 Output will look like this: 
 ```
